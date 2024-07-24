@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import moviesData from '../../data/movies.json';
+import MovieCard from './MovieCard';
 
 const Movies = ({movies}) => {
     return (
-        <div>
+        <div className="movie-container">
             <h1>Movies</h1>
-            <ul>
+            <ul className="movie-list">
                 {movies.map((movie) => (
-                    <li key={movie.id}>{movie.title}</li>
+                    <MovieCard key={movie.id} movie={movie} />
                 ))}
             </ul>
         </div>
