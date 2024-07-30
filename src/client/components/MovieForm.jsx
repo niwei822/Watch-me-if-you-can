@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MovieForm(addMovie
+function MovieForm( {addMovie}
     ) {
 
   const handleForm = (e) => {
@@ -15,23 +15,23 @@ function MovieForm(addMovie
   }
   return (
     <div className="movie-form">
-      <h1>Add a Moive</h1>
+      <h1>Add a Movie</h1>
       <form onSubmit={handleForm}>
         <div>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" placeholder="Title" />
+        <input id="title" name="title" type="text" placeholder="Title" />
         </div>
         <div>
         <label htmlFor="poster">Poster</label>
-        <input id="poster" type="text" placeholder="Poster URL" />
+        <input id="poster" name="poster" type="text" placeholder="Poster URL" />
         </div>
         <div>
         <label htmlFor="overview">Overview</label>
-        <textarea id="overview" placeholder="Overview"></textarea>
+        <textarea id="overview" name="overview" placeholder="Overview"></textarea>
         </div>
         <div>
         <label htmlFor="release_date">Release Date</label>
-        <input id="release_date" type="text" placeholder="Release Date" />
+        <input id="release_date" name="release_date" type="text" placeholder="Release Date" />
         </div>
         <button type="submit">Add Movie</button>
       </form>
