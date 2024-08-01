@@ -32,11 +32,37 @@ function App() {
         setShowForm(true);
       });
   }
+  
+  const editMovie = (id,updatedMovie) => {
+    axios.put(`/api/movies/${id}`, updatedMovie)
+      .then((res) => {
+        setMovies(movies.map((movie) => (movie.id === res.data.id ? res.data : movie)));
+        setShowForm(false);
+        alert("Movie has been updated!");
+      })
+      .catch((err) => {
+        console.log("Error updating movie:", err);
+        alert("Error updating movie. Please try again.");
+        setShowForm(true);
+      });
+  };
 
+  const deleteMovie = (id) => {
+    axios.delete(`/api/movies/${id}`)
+      .then((res) => {
+        setMovies(movies.filter((movie) => movie.id !== res.data.id));
+        setShowForm(false);
+        alert("Movie has been deleted!");
+      })
+      .catch((err) => {
+        console.log("Error deleting movie:", err);
+        alert("Error deleting movie. Please try again.");
+      });
+  };
   return (
     <div>
       <Header showForm={showForm} setShowForm={setShowForm} />
-      {showForm ? <MovieForm addMovie={addMovie} /> : <Movies movies={movies} />}
+      {showForm ? <MovieForm addMovie={addMovie}/> : <Movies movies={movies} editMovie={editMovie} deleteMovie={deleteMovie} />}
     </div>
   );
 }
